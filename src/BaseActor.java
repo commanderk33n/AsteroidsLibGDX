@@ -301,9 +301,19 @@ public class BaseActor extends Group
      *  Calculates the speed of movement (in pixels/second).
      *  @return speed of movement (pixels/second)
      */
+
     public float getSpeed()
     {
         return velocityVec.len();
+    }
+
+    /**
+     * Maxspeed getter
+     * @return maxSpeed of actor
+     */
+    public float getMaxSpeed()
+    {
+        return maxSpeed;
     }
 
     /**

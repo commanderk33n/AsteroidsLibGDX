@@ -60,7 +60,22 @@ public class LevelScreen extends BaseScreen
 
             for ( BaseActor laserActor : BaseActor.getList(mainStage, "Laser") )
             {
-                if (laserActor.overlaps(asteroidActor))
+                if (laserActor.overlaps(asteroidActor) && asteroidActor.getWidth() > 32)
+                {
+                    Explosion boom = new Explosion(0,0, mainStage);
+                    boom.centerAtActor(asteroidActor);
+                    laserActor.remove();
+                    asteroidActor.remove();
+
+                    for (int i = 0; i < 2; i++) {
+                        Asteroid smallAsteroid = new Asteroid(asteroidActor.getX(), asteroidActor.getY(), mainStage);
+                        smallAsteroid.setWidth(asteroidActor.getWidth() / 2);
+                        smallAsteroid.setHeight(asteroidActor.getHeight() / 2);
+                        smallAsteroid.setMaxSpeed(smallAsteroid.getMaxSpeed() * 2.0f);
+                        smallAsteroid.setSpeed(smallAsteroid.getSpeed() *1.5f);
+                    }
+                }
+                if(laserActor.overlaps(asteroidActor) && asteroidActor.getWidth() == 32)
                 {
                     Explosion boom = new Explosion(0,0, mainStage);
                     boom.centerAtActor(asteroidActor);
